@@ -41,7 +41,6 @@ let cardPlay = [];
  {
     cardPlay[i].Id = unieqID++
  }
-    let tmpArrForTest = [{c:"#ffaa00" , n:"change dirction" , Id:0} ,  {c:"#ffaa00" , n:5 , ID:2} , {c:"black" , n:"+4" , Id:3} , {c:"black" , n:"select color" , Id:4}];
-    return tmpArrForTest;
+
      return cardPlay;
 }

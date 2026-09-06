@@ -240,27 +240,27 @@ io.on('connection' , socket => {
     })
     /**************** test ******************** */
 
-    socket.on("test" , event => {
-        if (testCount === 0 ){
-        let name  = "ali";
-        let data ={
-            number:2,
-        }
-        socket.join(name);
-        createGame(socket , data, name);        
-        socket.emit("you join the room" , name);
-        socket.broadcast.emit("new room" , name);
-        testCount++
-        }
-        else {
-            let event = "ali"
-            socket.join(event);
-            joinPlayer(socket,event);
-            socket.emit("you join the room" , event);
-        }
+    // socket.on("test" , event => {
+    //     if (testCount === 0 ){
+    //     let name  = "ali";
+    //     let data ={
+    //         number:2,
+    //     }
+    //     socket.join(name);
+    //     createGame(socket , data, name);        
+    //     socket.emit("you join the room" , name);
+    //     socket.broadcast.emit("new room" , name);
+    //     testCount++
+    //     }
+    //     else {
+    //         let event = "ali"
+    //         socket.join(event);
+    //         joinPlayer(socket,event);
+    //         socket.emit("you join the room" , event);
+    //     }
 
-    })
-})
+    // })
+});
 
 server.listen(3000 , () => {
     console.log('server is runing');

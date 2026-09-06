@@ -21,7 +21,9 @@ socket.on('msg to ALL' , data => {
 ////////////////////////////////////////////////////////////////////
 
 const createAgame = document.getElementById("createAgame");
-
+document.getElementById("closeBox").addEventListener("click" , () => {
+        document.getElementById("createRoomBox").style.display = 'none';
+})
 createAgame.addEventListener("click" , ()=> {
     document.getElementById("createRoomBox").style.display = 'flex';
     

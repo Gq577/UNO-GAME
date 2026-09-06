@@ -79,7 +79,7 @@
                 clearAll(1);
             }
          }
-         function createFourColor (cardOpj){
+         function createFourColor (cardOpj , statusOfCard){
                 const blackCard = cardOpj.div;
                 blackCard.onclick = null;
                 blackCard.innerHTML = '';  
@@ -104,6 +104,7 @@
                         height: '100%',
                         cursor:'pointer'
                     });
+                    if (!statusOfCard)
                     colorDiv.onclick = () => playAcard(cardOpj ,color);
 
                     cardText.appendChild(colorDiv)
@@ -167,6 +168,11 @@
 
             data.cards.forEach(card => {
             myCard.push({div:creatDiv(container , card.n , card.c), color:card.c , number:card.n});
+            });
+            myCard.forEach(card => {
+                if (card.number === "select color"){
+                    createFourColor(card , 1);
+                }
             })
          }
          )
@@ -180,10 +186,36 @@
                data.card.number = changeDirctionSVG;
                 
                 const cardText = document.createElement("div");
-                cardText.innerHTML = data.card.number;
                 cardText.style.color = data.card.color;
                 cardText.id = "cardText";
-                newDiv.appendChild(cardText);
+                if (data.card.number === "select color"){
+                        Object.assign(cardText.style , {
+                        display:"grid",
+                        gridTemplateColumns:"repeat(2 , 1fr)",
+                        overflow:"hidden",
+                    });
+
+
+                    newDiv.appendChild(cardText);
+                    const colors =  ['#5555fd' , '#ffaa00' , '#ff5555' , '#55aa55'];
+                    colors.forEach(color => {
+                        const colorDiv = document.createElement('div');
+                        colorDiv.classList.add("theColorDivs");
+                        Object.assign(colorDiv.style , {
+                            background:color,
+                            width:  '100%',
+                            height: '100%',
+                            cursor:'pointer'
+                        });
+                    
+
+                        cardText.appendChild(colorDiv)
+                    })
+                }
+                else{ 
+                    cardText.innerHTML = data.card.number;
+                    newDiv.appendChild(cardText);
+                }
                 newDiv.style.opacity = '1';
                 lastDiv.appendChild(newDiv);
                 lastDiv.replaceChild(newDiv , lastDiv.children[0]);
